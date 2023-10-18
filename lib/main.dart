@@ -1,8 +1,3 @@
-// https://dartpad.dev/?id=fdd369962f4ff6700a83c8a540fd6c4c
-// This code is distributed under the MIT License.
-// Copyright (c) 2018 Felix Angelov.
-// You can find the original at https://github.com/felangel/bloc.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,7 +6,6 @@ void main() {
   runApp(const App());
 }
 
-/// Custom [BlocObserver] that observes all bloc and cubit state changes.
 class AppBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
@@ -26,14 +20,7 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-/// {@template app}
-/// A [StatelessWidget] that:
-/// * uses [bloc](https://pub.dev/packages/bloc) and
-/// [flutter_bloc](https://pub.dev/packages/flutter_bloc)
-/// to manage the state of a counter and the app theme.
-/// {@endtemplate}
 class App extends StatelessWidget {
-  /// {@macro app}
   const App({Key? key}) : super(key: key);
 
   @override
@@ -45,14 +32,7 @@ class App extends StatelessWidget {
   }
 }
 
-/// {@template app_view}
-/// A [StatelessWidget] that:
-/// * reacts to state changes in the [ThemeCubit]
-/// and updates the theme of the [MaterialApp].
-/// * renders the [CounterPage].
-/// {@endtemplate}
 class AppView extends StatelessWidget {
-  /// {@macro app_view}
   const AppView({Key? key}) : super(key: key);
 
   @override
@@ -68,10 +48,6 @@ class AppView extends StatelessWidget {
   }
 }
 
-/// {@template counter_page}
-/// A [StatelessWidget] that:
-/// * provides a [CounterBloc] to the [CounterView].
-/// {@endtemplate}
 class CounterPage extends StatelessWidget {
   /// {@macro counter_page}
   const CounterPage({Key? key}) : super(key: key);
@@ -85,10 +61,6 @@ class CounterPage extends StatelessWidget {
   }
 }
 
-/// {@template counter_view}
-/// A [StatelessWidget] that:
-/// * demonstrates how to consume and interact with a [CounterBloc].
-/// {@endtemplate}
 class CounterView extends StatelessWidget {
   /// {@macro counter_view}
   const CounterView({Key? key}) : super(key: key);
@@ -129,31 +101,20 @@ class CounterView extends StatelessWidget {
   }
 }
 
-/// Event being processed by [CounterBloc].
 abstract class CounterEvent {}
 
-/// Notifies bloc to increment state.
 class Increment extends CounterEvent {}
 
-/// Notifies bloc to decrement state.
 class Decrement extends CounterEvent {}
 
-/// {@template counter_bloc}
-/// A simple [Bloc] that manages an `int` as its state.
-/// {@endtemplate}
 class CounterBloc extends Bloc<CounterEvent, int> {
-  /// {@macro counter_bloc}
   CounterBloc() : super(0) {
     on<Increment>((event, emit) => emit(state + 1));
     on<Decrement>((event, emit) => emit(state - 1));
   }
 }
 
-/// {@template brightness_cubit}
-/// A simple [Cubit] that manages the [ThemeData] as its state.
-/// {@endtemplate}
 class ThemeCubit extends Cubit<ThemeData> {
-  /// {@macro brightness_cubit}
   ThemeCubit() : super(_lightTheme);
 
   static final _lightTheme = ThemeData(
@@ -170,7 +131,6 @@ class ThemeCubit extends Cubit<ThemeData> {
     brightness: Brightness.dark,
   );
 
-  /// Toggles the current brightness between light and dark.
   void toggleTheme() {
     emit(state.brightness == Brightness.dark ? _lightTheme : _darkTheme);
   }
